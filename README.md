@@ -19,17 +19,16 @@ This project is an **"Automated Blueprint."** With a single command, it handles 
 
 This diagram illustrates how this repository safely links physical cloud hardware to an active AI program:
 
-┌────────────────────────────────────────────────────────┐
-│               Application Layer (PyTorch / Whisper)    │
-├────────────────────────────────────────────────────────┤
-│               Docker Container (Nvidia Runtime)        │
-├────────────────────────────────────────────────────────┤
-│               Nvidia Container Toolkit Layer           │
-├────────────────────────────────────────────────────────┤
-│               Host OS (CUDA Drivers & Toolkit 12.4)    │
-├────────────────────────────────────────────────────────┤
-│               Physical Hardware (Nvidia A100 / H100)   │
-└────────────────────────────────────────────────────────┘
+```mermaid
+flowchart BT
+	hardware["Physical Hardware<br/>NVIDIA A100 / H100"]
+	host["Host OS<br/>CUDA Drivers & Toolkit 12.4"]
+	toolkit["NVIDIA Container Toolkit"]
+	container["Docker Container<br/>NVIDIA Runtime"]
+	app["Application Layer<br/>PyTorch / Whisper"]
+
+	hardware --> host --> toolkit --> container --> app
+```
 
 
 ### Core Engineering Features:
