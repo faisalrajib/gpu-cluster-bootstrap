@@ -1,0 +1,15 @@
+@'
+version: '3.8'
+services:
+  cuda-bench:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+'@ | Out-File -FilePath docker/docker-compose.yml -Encoding utf8
